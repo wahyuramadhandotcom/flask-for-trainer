@@ -4,8 +4,11 @@ __pycache__/
 *$py.class
 
 # C extensions
+instance
 *.so
 myenv/
+migrations/
+.DS_Store
 # Distribution / packaging
 .Python
 build/

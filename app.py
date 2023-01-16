@@ -1,7 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
+from datetime import date
+
 
 app = Flask(__name__)
-list_pendaftar = []
+list_pendaftar = ["orang 1", 'orang 2', 'orang 3', "orang 4"]
 @app.route("/")
 def welcome():
     return {
@@ -9,9 +11,9 @@ def welcome():
     }
 @app.route("/pendaftar")
 def pendaftar():
-    return {
-        "Pendaftar" : list_pendaftar
-    }
+    today = date.today()
+    return render_template ("list_pendaftar.html", lp=list_pendaftar, tgl = today)
+    
 
 @app.route('/addPeserta/<nama>')
 def addPeserta(nama):
@@ -25,6 +27,15 @@ def deletePeserta(nama):
     return {
         "message" : f"berhasil di hapus! {list_pendaftar}"
     }
+
+@app.route("/home/<nama>")
+def home(nama):
+    name = nama
+    return render_template ("home.html", name=nama)
+
+@app.route("/about")
+def about():
+    return render_template ("about.html")
 
 if "__main__" == __name__:
     app.run(debug=True, port=2000)
