@@ -11,18 +11,17 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col"></div>
             <div class="col">
                 <table class="table">
                     <h1>{{lp}}</h1>
                     <p>Tanggal : {{tgl}}</p>
-                    <a href="/add_peserta" class="btn btn-success">tambah Peserta</a>
                     <thead class="bg-primary">
                         <th>No</th>
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Gender</th>
                         <th>Umur</th>
+                        <th>action</th>
                     </thead>
                     <tbody>
                         {% for l in lp %}
@@ -32,12 +31,16 @@
                                 <td>{{l.alamat}}</td>
                                 <td>{{l.gender}}</td>
                                 <td>{{l.umur}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                    <a href="/pendaftar/{{l.id}}/delete" class="btn btn-danger">Delete</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                <a href="/add_peserta" class="btn btn-success">tambah Peserta</a>
             </div>
-            <div class="col"></div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

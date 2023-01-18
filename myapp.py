@@ -40,6 +40,14 @@ def save_peserta():
         db.session.add(p)
         db.session.commit()
         return redirect('/pendaftar')
+@app.route('/pendaftar/<id>/delete')
+def delete_peserta(id):
+    obj =Peserta.query.filter_by(id=id).first()
+    db.session.delete(obj)
+    db.session.commit()
+    return redirect ('/pendaftar')
+
+
 
 
 if "__main__" == __name__:
