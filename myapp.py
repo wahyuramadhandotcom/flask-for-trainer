@@ -47,8 +47,31 @@ def delete_peserta(id):
     db.session.commit()
     return redirect ('/pendaftar')
 
+@app.route("/pendaftar/<id>/edit")
+def edit_peserta(id):
+    obj = Peserta.query.filter_by(id=id).first()
+    return render_template ('edit_peserta.html', obj=obj)
 
+@app.route("/pendaftar/<id>/update", methods=['POST'])
+def update_peserta(id):
+    obj = Peserta.query.filter_by(id=id).first()#get data from db
 
+    #data from client server
+    f_nama=request.form.get('nama')
+    f_alamat=request.form.get("alamat")
+    f_gender=request.form.get('gender')
+    f_umur=request.form.get('umur')
+
+    #replace data from db with data from client server
+    obj.name = f_nama
+    obj.alamat = f_alamat
+    obj.gender=f_gender
+    obj.umur=f_umur
+
+    #save perubahan data k db
+    db.session.add(obj)
+    db.session.commit()
+    return redirect('/pendaftar')
 
 if "__main__" == __name__:
     app.run(debug=True, port=2000)
